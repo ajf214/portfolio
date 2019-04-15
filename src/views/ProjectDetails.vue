@@ -1,13 +1,31 @@
 <template>
   <div class="project-details">
     project-details-{{this.$route.params.projectName}}
+    <div v-html="content">
+    </div>
   </div>
 </template>
 
 <script>
+import marked from 'marked'
+// import test from './public/docs/azure-blueprints.md'
+
 export default {
   name: 'ProjectDetails',
-  props: {}
+  data () {
+    return {
+      content: ''
+    }
+  },
+  created () {
+    this.setContent()
+  },
+  methods: {
+    setContent () {
+      // const markdown = require(`./docs/${this.$route.params.projectName}.md`)
+      this.content = marked('# Test')
+    }
+  }
 }
 </script>
 
