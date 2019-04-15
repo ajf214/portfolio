@@ -18,7 +18,7 @@
           <a :href="project.link" target="_blank">
             <h3>{{project.displayName}}</h3> 
           </a>
-          <p class="description">{{project.description}}</p>
+          <p class="description" v-html="project.description"></p>
         </div>
         <div class="graphic" :id="project.name" :class="{short: project.name === 'project-watt'}">
           <img class="logo" :src="`/${project.name}.svg`">
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import marked from 'marked'
+
 export default {
   name: 'PortfolioHome',
   props: {},
@@ -38,34 +40,34 @@ export default {
         {
           name: 'azure-blueprints',
           displayName: 'Azure Blueprints',
-          description: `The world’s largest enterprises were having challenges scaling their consumption 
-          of Microsoft Azure because new application environments took too long to set up. Blueprints allows 
-          cloud architects to set up an environment in a few clicks.`,
+          description: marked(`Organizations with lots of application teams were having challenges scaling their consumption 
+          of Microsoft Azure because new application environments took too long to set up. [Blueprints](https://azure.microsoft.com/services/blueprints/) drastically
+          simplifies environment set up for cloud architects.`),
           link: 'https://www.youtube.com/watch?v=cQ9D-d6KkMY'
         },
         {
           name: "change-a-view",
           displayName: "Change A View",
-          description: `Reddit’s r/changemyview subreddit — with over 700,000 subscribers, was hitting the 
-          limits of how it could innovate in improving discussions. Widely regarded as one of the most unique 
+          description: marked(`Reddit’s [r/changemyview subreddit](https://reddit.com/r/changemyview) — with over 700,000 subscribers, was hitting the 
+          limits of how it could innovate in improving discussions. [Widely regarded](https://www.wired.com/story/free-speech-issue-reddit-change-my-view/) as one of the most unique 
           communities on reddit, the team decided that the community needed to exist on it’s own site, where 
-          they could expand what would be possible with discussion on the internet.`,
+          they could expand what would be possible with discussion on the internet.`),
           link: 'https://www.changeaview.com/'
         },
         {
           name: "project-watt",
           displayName: "projectWATT",
-          description: `My master’s thesis at SVA IxD, For a year, I explored how we can better have complex, 
-          nuanced discussions on the internet— motivated by the aftermath of the 2016 elections. projectWATT 
-          is a publication which features OPs from the most popular threads on the r/changemyview subreddit 
-          who summarize their CMV experience so it can be shared beyond reddit.`,
-          link: 'https://projectwatt.com'
+          description: marked(`My master’s thesis at [SVA IxD](https://interactiondesign.sva.edu/), For a year, I explored how we can better have complex, 
+          nuanced discussions on the internet— motivated by the aftermath of the 2016 elections. [projectWATT](https://projectwatt.com) 
+          is a publication which features OPs from the most popular threads on the [r/changemyview subreddit](https://reddit.com/r/changemyview)  
+          who summarize their CMV experience so it can be shared beyond reddit.`),
+          link: 'https://youtu.be/GE6its5ruI0?t=13145'
         }
       ],
-      bio: `I’m a product manager, product designer, and dog lover. I spend most of my time at 
-      Microsoft where I run a service called Azure Blueprints to help the largest enterprises 
-      run Azure at scale. With the rest of my work time, I run product at Change A View, a platform 
-      to help the world discuss differently.`
+      bio: `I’m a product manager, product designer, and dog lover. I spend most of my work time at 
+      Microsoft, where I run the Azure Blueprints service to help the largest enterprises 
+      scale their environment creation process in Azure. With the rest of my work time, I run product at 
+      Change A View, a platform to help the world discuss differently.`
     }
   }
 }
@@ -127,6 +129,10 @@ export default {
 
 .project-copy h3 {
   margin-bottom: 8px;
+}
+
+.project-copy .description >>> a {
+  text-decoration: underline;
 }
 
 .bio {

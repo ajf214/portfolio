@@ -77,7 +77,7 @@ table {
 p, a {
   font-family: 'Crimson Text', serif;
   font-size: 1.125rem;
-  line-height: 1.35;
+  line-height: 1.5;
 }
 
 a {
